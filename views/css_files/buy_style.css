@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    outline: none;
+}
+
+
+:root {
+    --nav-txt-color: rgb(0, 255, 85);
+    --logo-color: red;
+    --menu-color: rgb(85,83,83);
+    /* --c-color:  rgb(0, 247, 255); */
+    /* --c-color: rgb(252, 164, 0); */
+    --c-color: rgb(255, 0, 119);
+    --e-color: rgb(0, 255, 85);
+    --b-color: orange;
+    --m-color: yellow;
+    --b-color: red;
+    --f-color: #bc13fe;;
+    --a-color: rgb(255, 81, 0);
+    --ha-color: rgb(85, 83, 83);
+    --d-color: rgb(0, 191, 255);
+}
+
+html, body {    
+    width: 100%;
+    height: 100vh;
+    background: black;
+    /* font-family: 'Roboto'; */
+    font-family: 'Poppins', sans;
+}
+
+header a {
+    float: left;
+}
+
+.logo {
+    height: 70px;
+    border-radius: 10px;
+    box-shadow:  
+    0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 3rem var(--logo-color),
+    0 0 0.8rem var(--logo-color),
+    0 0 1.4rem var(--logo-color);
+}
+
+.header-div ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    height: 50px;
+}
+
+.header-div ul li a {
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    color: white;
+}
+
+
+.hover-list {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+}
+
+.hover-list:hover{
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--nav-txt-color),
+    0 0 0.7rem var(--nav-txt-color),
+    0 0 1.3rem var(--nav-txt-color),
+    inset 0 0 1rem var(--nav-txt-color);
+}
+
+.logout {
+    flex: 0.5;
+}
+
+header {
+    background-color: black;
+    height: 85px;
+    position: sticky;
+    padding: 1rem;
+    top: 0;
+}
+
+header li {
+    flex: 1;
+    text-align: center;
+    margin: auto 1rem;
+}
+
+header li a{   
+    padding: .6rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.searchListItem {
+    flex: 4;
+    position: relative;
+}
+
+#livesearch {
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 120%;
+    left: 11%;
+    width: 350px;
+    overflow-wrap: break-word;
+    z-index: 999;
+}
+
+#livesearch a {
+    color: blue;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(95, 95, 95);
+}   
+
+#livesearch a:hover {
+    background-color: #d3d3d3;
+}
+
+.searchListItem div button {
+    padding: .2rem;
+    font-size: 1.05rem;
+    border-radius: 5px;
+}
+
+#searchQuery {
+    width: 65%;
+    height: 2rem;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: .5rem;
+    font-size: 1.1rem;
+}
+
+button {
+    background-color: orange;
+    border:none;
+    height: 2rem;
+    width: 3rem;
+}
+
+
+#present {
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--a-color),
+    0 0 0.7rem var(--a-color),
+    0 0 1.3rem var(--a-color),
+    inset 0 0 1rem var(--a-color);
+}
+
+.hover-list:hover, #present:hover {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+/* ---------------------------products----------------------- */
+
+
+.product-main  {
+    color: white;
+    display: flex;
+    align-items: center;
+    /* margin-top: 4rem; */
+
+}
+
+.product-div {
+    word-break: break-all;
+    /* grid-area: product; */
+    flex: 5;
+    width: 95%;
+}
+
+.product {
+    position: relative;
+    background-color: #111111;
+    margin: 1rem;
+    display: grid;
+    padding: 1rem  0 1rem 1rem;
+    grid-template-areas:
+    'image name name name'
+    'image desc desc desc'
+    'image start end price';
+}
+
+.productImage {
+    grid-area: image;
+    margin: 1rem;
+    border-radius: 15px;
+    background-color: black ;
+    box-shadow: 0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 2rem var(--color),
+    0 0 1rem var(--color),
+    0 0 1.2rem var(--color);
+}
+
+
+.price {
+    font-size: 2rem;
+    margin: 1rem;
+    text-shadow: 0 0 .2rem #fff,
+    0 0 .3rem #fff,
+    0 0 2rem var(--color),
+    0 0 1rem var(--color),
+    0 0 1.2rem var(--color);
+}
+
+.productName {
+    grid-area: name;
+    clear: both;
+    width: 80%;
+    margin: 1rem;
+    font-size: 1.5rem;
+    text-shadow: 0 0 0rem #fff,
+    0 0 0rem #fff,
+    0 0 1rem var(--d-color),
+    0 0 0.6rem var(--d-color),
+    0 0 0.8rem var(--d-color);
+}
+
+.product i {
+    font-size: 2rem;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.productName:hover {
+    text-decoration: underline;
+}
+
+.shortDescription {
+    grid-area: desc;
+    margin: 1rem;
+    color: rgba(255, 255, 255, 0.945);
+}
+
+.startDate {
+    margin: 1rem;
+    text-align: center;
+    grid-area: start;
+    align-self: center;
+}
+
+.endDate {
+    grid-area: end;
+    text-align: center;
+    margin: 1rem;
+    align-self: center;
+}
+
+.currentPrice {
+    grid-area: price;
+    text-align: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product img {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.product a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------empty favourites----------------------- */
+
+
+.emptyDiv a {
+    color: white;
+}
+
+.emptyDiv {
+    position: relative;
+    height: 50%;
+    /* width: 100%; */
+    margin-top: 10%;
+}
+
+.emptyDiv div {
+    /* z-index: 10; */
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #1e1e1e;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.emptyDiv div i {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.emptyDiv div p {
+    margin: 1rem;
+}
+
+.emptyDiv div:hover {
+    box-shadow: 0 0 1rem #fff,
+    0 0 1rem #fff,
+    0 0 4rem var(--menu-color),
+    0 0 1rem var(--menu-color),   
+    0 0 1.6rem var(--menu-color),
+    inset 0 0 1rem var(--menu-color)
+}
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------sort and filter-------------------------- */
+
+
+
+.options{
+    text-align: center;
+    flex: 1;
+    align-self: flex-start;
+    position: sticky;
+    top: 20%;
+}
+
+.options p {
+    margin: 2rem;;
+    padding: 1rem;
+    background: #1e1e1ebb;
+    border-radius: 15px;
+    border: 2px solid white;
+}
+
+.options p:hover {
+    background: black;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 1.5rem var(--nav-txt-color),
+    0 0 0.6rem var(--nav-txt-color),
+    0 0 1.1rem var(--nav-txt-color),    
+    inset 0 0 .5rem var(--nav-txt-color);
+    
+}
+
+
+.options a {
+    text-decoration: none;
+    color: white;
+}
+
+
+#s1, #s2, #s3, #bs, #f1, #f2, #f3 {
+    display: none;
+}
+
+
+
+.title {
+    color: white;
+    margin: 2rem 0; 
+    text-align: center;
+    font-size: 4.5rem;
+    text-shadow: 0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--color),
+    0 0 0.8rem var(--color),
+    0 0 2.8rem var(--color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------footer--------------------------------- */
+
+
+
+
+
+
+
+.space {
+    height: 7rem;
+}
+
+footer {
+    margin-top: 8rem;
+    background-color: #1e1e1e;
+    height: 200px;
+    width: 100%;
+}
+
+footer i {
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.links {
+    width: 100%;
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+}
+
+footer p {
+    color: white;
+    margin-left: 10vw;  
+    margin-bottom: 1rem;
+}
+
+.made {
+    padding-top: .5rem;
+    text-align: center;
+}
+
+.made i {
+    padding-left: 1.5rem;
+    color: red;
+    font-size: 3rem;
+    text-shadow:  
+    0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 2rem red,
+    0 0 0.7rem red,
+    0 0 1.3rem red
+}
+
+footer span {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

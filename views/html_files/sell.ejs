@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css_files/sell.css">
+    <link rel="stylesheet" href="../css_files/dialog.css">
+    <script src="https://kit.fontawesome.com/4bdd37639a.js" crossorigin="anonymous"></script>
+    <script src="../js_files/sell_js.js"></script>
+    <script src="../js_files/search.js"></script>
+    <link rel="icon" type="image/x-icon" href="data:<%= resource.webImg.favicon.contentType %>;base64,<%= resource.webImg.favicon.data.toString('base64') %>">
+    <title>Sell-Bidding Wars</title>
+</head>
+<body>
+
+    
+    <div class="main-div">
+
+
+
+    <header>
+        <a href="/">
+            <img src="data:<%= resource.webImg.logo.contentType %>;base64,<%= resource.webImg.logo.data.toString('base64') %>" class="logo"/>
+
+        </a>    
+        <div class="header-div">
+            <ul>
+                <li class="searchListItem">
+                    <div>
+                        <input type="text" name="query" id="searchQuery" onkeyup="showResult(this.value)">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    <div>
+                    <div id="livesearch">
+
+                    </div>
+                    
+
+                </li>
+
+                <li class="hover-list">
+                        <a href="/">Home</a>
+                </li>
+                
+                <li class="hover-list">
+
+                        <a href="buy">Buy</a>
+
+                </li>
+
+                <li class="hover-list">
+                    <% if (resource.isLogin == 1) { %>
+                        <a href="/favourites">Favourites</a>
+                        <% } else { %>
+                            
+                            <a onclick="showDialog('favDialog')">Favourites</a>
+                            <dialog id="favDialog" class="dialog">
+                                <p>
+                                    Login to view Favourites
+                                </p>
+                                <span onclick="closeDialog('favDialog')">
+                                    X
+                                </span>
+                            </dialog>
+
+                    <% } %>
+                </li>
+
+                <li>
+                    <a id="present">Sell</a>
+                </li>
+
+                <li class="hover-list">
+                <% if (resource.isLogin == 1) { %>
+                    <a href="profile">My Profile</a>
+                    <% } else { %>
+                        <a href="login">Login / Register</a>
+                    <% } %>
+                </li>
+
+                <% if (resource.isLogin == 1) { %>
+                <li class="hover-list logout">
+                        <a href="logout">
+                            <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                        </a>
+                    </li>
+                <% } %>
+
+            </ul>
+        </div>
+    </header>
+
+    <div class="sell-div">
+ 
+
+
+        <dialog id="success" class="dialog">
+            <p>
+                Success
+            </p>
+            <span onclick="closeDialog('success')">
+                X
+            </span>
+        </dialog>
+        <form action="/sellProduct" class="sellProductForm" method="post" enctype="multipart/form-data">
+            
+            <label for="productName">Product Name (5-150 characters): </label>
+            <textarea name="productName" id="productName" cols="30" rows="3" maxlength="150" minlength="5" required></textarea>
+            
+            <label for="shortDescription">Short Description (50-200 characters) :</label>
+            <textarea name="shortDescription" id="shortDescription" cols="30" rows="5" maxlength="200" minlength="50" required></textarea>
+            
+            <label for="category">Category: </label>
+            <input list="categories" name="category" required id="category">
+            <datalist id="categories">
+                <option value="Antiques"></option>
+                <option value="Home Appliances"></option>
+                <option value="Electronics"></option>
+                <option value="Vehicle"></option>
+                <option value="Furnitures"></option>
+                <option value="Other products"></option>
+            </datalist>
+            
+            <label for="description">Description / Specification (200-1000 characters) :</label>
+            <textarea name="description" id="description" cols="50" rows="15" maxlength="1000" minlength="200" required></textarea>
+            
+            <label for="startDate">Start Date :</label>
+            <input type="datetime-local" name="startDate" required id="startDate">
+            
+            <label for="endDate">End Date :</label>
+            <input type="datetime-local" name="endDate" required id="endDate">
+            
+            <label for="reason">Reason for selling (100-300 characters) :</label>
+            <textarea name="reason" id="reason" cols="30" rows="5" maxlength="300" minlength="100" required></textarea>
+            
+            <label for="initialPrice">Initial Price :</label>
+            <input type="number" name="initialPrice" required min="100" max="10000000" id="initialPrice" >
+            
+            <label for="productImage">Image :</label>
+            <input type="file" name="productImage" accept="image/*" required id="productImage">
+
+            <input type="submit" value="SUBMIT">
+
+        </form>
+    </div>
+
+
+</div>
+
+        <footer>
+            <div class="made">
+                <span>Made with   
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+
+                </span>
+            </div>
+            <p>CONTACT DETAILS: </p>
+            <div class="links">
+                <a href="https://github.com/santhosh-programmer" target="_blank">
+                    <span>
+                        <i class="fa-brands fa-github"></i>
+                        Github
+                    </span>
+                </a>
+                <a href="https://www.linkedin.com/in/santhosh-programmer" target="_blank">
+                    <span>
+                        <i class="fa-brands fa-linkedin"></i>   
+                        LinkedIn
+                    </span>
+                </a>
+                <a href="mailto:santhoshp.official@gmail.com" target="_blank">
+                    <span>
+                        <i class="fa-solid fa-envelope"></i>
+                        santhoshp.official@gmail.com
+                    </span>
+                </a>
+                <a href="https://www.instagram.com/santhosh_pgmr" target="_blank"> 
+                    <span>
+                        <i class="fa-brands fa-instagram"></i>
+                        Instagram
+                    </span>
+                </a>
+            </div>
+        </footer>
+
+
+    <script>
+        let status = '<%-resource.uploadStatus%>'
+        if(status == 'true' ) {
+            let element = document.getElementById('success')
+            element.showModal()
+        }
+        function closeDialog(id) {
+            window.location.href = window.location.origin + '/sell';
+            let element = document.getElementById(id)
+            element.close()
+        }
+    </script>
+
+
+</body>
+</html>
