@@ -1,0 +1,44 @@
+
+
+/* ------------------------------------dialog------------------------------------- */
+
+
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    outline: none;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 .3rem #fff,
+    0 0 .3rem #fff,
+    0 0 4rem var(--logo-color),
+    0 0 1rem var(--logo-color),
+    0 0 1.4rem var(--logo-color);   
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dialog p {
+    text-align: center;
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.dialog span {
+    display: inline-block;
+    font-size: 1.5rem;
+    border: none;
+    padding: 1rem;
+}
+
+.dialog span:hover {
+    cursor: pointer;
+}
+
+.dialog::backdrop {
+    background-color: rgb(0, 0, 0, 0.8);
+}
+

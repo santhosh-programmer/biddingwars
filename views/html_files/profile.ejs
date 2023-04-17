@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css_files/profile_style.css">
+    <link rel="stylesheet" href="../css_files/dialog.css">
+    <script src="https://kit.fontawesome.com/4bdd37639a.js" crossorigin="anonymous"></script>
+    <script src="../js_files/profile_js.js"></script>
+    <script src="../js_files/search.js"></script>
+    <link rel="icon" type="image/x-icon" href="data:<%= resource.webImg.favicon.contentType %>;base64,<%= resource.webImg.favicon.data.toString('base64') %>">
+    <title>Profile-Bidding Wars</title>
+</head>
+<body>
+   
+
+
+    <div class="main-div">
+
+
+        <header>
+    
+            <a href="/">
+                <img src="data:<%= resource.webImg.logo.contentType %>;base64,<%= resource.webImg.logo.data.toString('base64') %>" class="logo"/>
+            </a>
+            <div class="header-div">
+                <ul>
+                    <li class="searchListItem">
+                        <div>
+                            <input type="text" name="query" id="searchQuery" onkeyup="showResult(this.value)">
+                            <button type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <div id="livesearch">
+
+                            </div>
+                        </div>
+                    </li>
+    
+                    <li class="hover-list">
+                        <a href="/">Home</a>
+                    </li>
+
+
+    
+                    <li class="hover-list">
+
+                            <a href="buy.html">Buy</a>
+
+                    </li>
+    
+                    <li class="hover-list">
+                        <% if (resource.isLogin == 1) { %>
+                            <a href="favourites.html">Favourites</a>
+                            <% } else { %>
+                                
+                                <a onclick="showDialog('favDialog')">Favourites</a>
+                                <dialog id="favDialog" class="dialog">
+                                    <p>
+                                        Login to view Favourites
+                                    </p>
+                                    <span onclick="closeDialog('favDialog')">
+                                        X
+                                    </span>
+                                </dialog>
+    
+                        <% } %>
+                    </li>
+    
+                    <li class="hover-list">
+                        <% if (resource.isLogin == 1) { %>
+                            <a href="sell.ejs">Sell</a>
+                            <% } else { %>
+                                
+                                <a onclick="showDialog('sellDialog')">Sell</a>
+                                <dialog id="sellDialog" class="dialog">
+                                    <p>
+                                        Login to sell products
+                                    </p>
+                                    <span onclick="closeDialog('sellDialog')">
+                                        X
+                                    </span>
+                                </dialog>
+    
+                        <% } %>
+                    </li>
+    
+                    <li>
+                        <a id="present"> My Profile</a>
+                    </li>
+    
+                    <% if (resource.isLogin == 1) { %>
+                    <li class="hover-list logout">
+                            <a href="logout">
+                                <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+                    <% } %>
+    
+    
+    
+                </ul>
+            </div>
+        </header>
+
+        
+    </div>
+
+    
+
+    <div class="profileMain" id="Profile">
+        <div class="profileOptions">
+
+            <% if (resource.category == 'personal') { %>
+             
+                <p id="active">
+                    Personal
+                </p>
+                <a href="edit.html">
+                    <p>
+                        Edit
+                    </p>
+                </a>
+                <a href="wallet.html">
+                    <p>
+                        Wallet
+                    </p>
+                </a>
+
+
+
+                <% } else if( resource.category == 'edit'){ %>
+ 
+                    <a href="profile.html">
+                        <p>
+                            Personal
+                        </p>
+                    </a>
+                    <p id="active">
+                        Edit
+                    </p>
+                    <a href="wallet.html">
+                        <p>
+                            Wallet
+                        </p>
+                    </a>
+
+
+
+                    <% } else { %>
+                     
+                        <a href="profile.html">
+                            <p>
+                                Personal
+                            </p>
+                        </a>
+                        <a href="edit.html">
+                            <p>
+                                Edit
+                            </p>
+                        </a>
+                        <p id="active">
+                                Wallet
+                        </p>
+
+
+            <% } %>
+
+
+            
+            <a href="buyHistory.html">
+                <p>
+                    Buy History
+                </p>
+            </a>
+
+
+            <a href="sellHistory.html">
+            <p>
+                Sell History
+            </p>
+            </a>
+
+
+        </div>
+
+
+     <% if (resource.category == 'personal') { %>
+    
+
+        <div class="common">
+            <div class="userImg">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="firstName">
+                <span class="detailOption">First Name : </span>
+                <span> <%= resource.user.firstName  %></span>
+            </div>
+            <div class="lastName">
+                <span class="detailOption">Last Name : </span>
+                <span> <%= resource.user.lastName  %></span>
+            </div>
+            <div class="userName">
+                <span class="detailOption">User Name : </span>
+                <span> <%= resource.user.userName  %></span>
+            </div>
+            <div class="userEmail">
+                <span class="detailOption">E-mail : </span>
+                <span> <%= resource.user.userEmail %></span>
+            </div>
+            <div class="userPass">
+                <span class="detailOption">Password : </span> 
+                <span id="userPassword"></span> 
+                <i class="fa-solid fa-eye" onclick="showPass(`<%= resource.user.userPassword %>`)"></i>
+            </div>
+
+        </div>
+
+
+     <% } else if(resource.category == 'edit'){ %>
+    
+
+        <div class="common">
+            <div class="userImg">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+
+            <form action="updateUser" method="post">
+
+            <div class="firstName">
+                <span class="detailOption">First Name : </span>
+                <input type="text" name="firstName" value=" <%= resource.user.firstName%>">
+            </div>
+            <div class="lastName">
+                <span class="detailOption">Last Name : </span>
+                <input type="text" name="lastName" value=" <%= resource.user.lastName%>">
+            </div>
+            <div class="userName">
+                <span class="detailOption">User Name : </span>
+                <span> <%= resource.user.userName  %></span>
+            </div>
+            <div class="userEmail">
+                <span class="detailOption">E-mail : </span>
+                <input type="email" name="userEmail" value="<%= resource.user.userEmail%>" size="40">
+            </div>
+            <div class="userPass">
+                <span class="detailOption">Password : </span> 
+                <input type="password" name="userPassword" value=" <%= resource.user.userPassword%>">
+            </div>
+            <div class="submitBtn">
+                <input type="submit" value="Save">
+            </div>
+            
+            </form>
+
+
+        </div>
+        
+
+
+        <% } else { %>
+         
+
+            <div class="common wallet-div">
+                <div class="walletIcon">
+                    <i class="fa-solid fa-coins" ></i>
+                    <span id="money">&#8377; <%= resource.user.wallet %> </span>
+                </div>
+                <div class="updateMoney">
+                    <p>
+                        Add money to wallet :
+                    </p>
+                    <input type="number" id="newMoney" min="100" max="10000" >
+                    <span onclick="addMoney()" class="updateMoneyBtn">Add now</span>
+                </div>
+            </div>
+
+
+        
+        
+        <% } %>
+        
+    </div>
+
+
+      
+
+      
+
+
+   
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="made">
+            <span>Made with   
+                <i class="fa-sharp fa-solid fa-heart"></i>
+                
+            </span>
+        </div>
+        <p>CONTACT DETAILS: </p>
+        <div class="links">
+            <a href="https://github.com/santhosh-programmer" target="_blank">
+                <span>
+                    <i class="fa-brands fa-github"></i>
+                    Github
+                </span>
+            </a>
+            <a href="https://www.linkedin.com/in/santhosh-programmer" target="_blank">
+                <span>
+                    <i class="fa-brands fa-linkedin"></i>   
+                    LinkedIn
+                </span>
+            </a>
+            <a href="mailto:santhoshp.official@gmail.com" target="_blank">
+                <span>
+                    <i class="fa-solid fa-envelope"></i>
+                    santhoshp.official@gmail.com
+                </span>
+            </a>
+            <a href="https://www.instagram.com/santhosh_pgmr" target="_blank"> 
+                <span>
+                    <i class="fa-brands fa-instagram"></i>
+                    Instagram
+                </span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        
+        if(performance.navigation.type == 2){
+            location.reload(true);
+        }
+
+    </script>
+
+</body>
+</html>

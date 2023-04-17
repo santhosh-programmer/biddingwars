@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}    
+
+
+:root {
+    --nav-txt-color: rgb(0, 255, 85);
+    --logo-color: red;
+    --menu-color: rgb(85,83,83);
+    --c-color:  rgb(0, 247, 255);
+    --e-color: rgb(0, 255, 85);
+    --b-color: orange;
+    --m-color: yellow;
+    --b-color: red;
+    --f-color: #bc13fe;;
+    --a-color: rgb(255, 81, 0);
+    --ha-color: rgb(85, 83, 83);
+    --d-color: rgb(0, 191, 255);
+    --neon-color: #0084ff;
+}
+
+html, body {    
+    width: 100%;
+    height: 100vh;
+    background: black;
+    scroll-behavior: smooth;
+    /* font-family: 'Roboto', sans-serif; */
+}
+
+.main-div {
+    padding: 1rem;
+}
+
+
+
+header a {
+    float: left;
+}
+
+.logo {
+    height: 70px;
+    border-radius: 10px;
+    box-shadow:  
+    0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 3rem var(--logo-color),
+    0 0 0.8rem var(--logo-color),
+    0 0 1.4rem var(--logo-color);
+}
+
+.header-div ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    height: 50px;
+}
+
+.header-div ul li a {
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    color: white;
+}
+
+
+.hover-list {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+}
+
+.hover-list:hover{
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--nav-txt-color),
+    0 0 0.7rem var(--nav-txt-color),
+    0 0 1.3rem var(--nav-txt-color),
+    inset 0 0 1rem var(--nav-txt-color);
+}
+
+.logout {
+    flex: 0.5;
+}
+
+header li {
+    flex: 1;
+    text-align: center;
+    margin: auto 1rem;
+}
+
+header li a{   
+    padding: .6rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.searchListItem {
+    flex: 4;
+    position: relative;
+}
+
+#livesearch {
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 120%;
+    left: 11%;
+    width: 350px;
+    overflow-wrap: break-word;
+    z-index: 1000;
+}
+
+#livesearch a {
+    color: blue;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(95, 95, 95);
+}   
+
+#livesearch a:hover {
+    background-color: #d3d3d3;
+}
+
+.searchListItem div button {
+    padding: .2rem;
+    font-size: 1.05rem;
+    border-radius: 5px;
+}
+
+#searchQuery {
+    width: 65%;
+    height: 2rem;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: .5rem;
+    font-size: 1.1rem;
+}
+
+button {
+    background-color: orange;
+    border:none;
+    height: 2rem;
+    width: 3rem;
+}
+
+
+#present {
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--a-color),
+    0 0 0.7rem var(--a-color),
+    0 0 1.3rem var(--a-color),
+    inset 0 0 1rem var(--a-color);
+}
+
+.hover-list:hover, #present:hover {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+/* ----------------------profile main------------------------ */
+
+
+
+.profileMain {
+    margin-top: 3rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileOptions {
+    flex: 1;
+    text-align: center;
+}
+
+.profileOptions p {
+    margin: 1rem;
+    margin-right: 2rem;
+    padding: 1rem;
+    background-color: #1e1e1e;
+    border-radius: 15px;
+}
+
+.profileOptions a {
+    text-decoration: none;
+    color: white;
+}
+
+.profileOptions p:hover {
+    background-color: black;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 1.5rem var(--nav-txt-color),
+    0 0 0.7rem var(--nav-txt-color),
+    0 0 1.3rem var(--nav-txt-color),
+    inset 0 0 1rem var(--nav-txt-color);
+}
+
+#active {
+    background-color: black;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--a-color),
+    0 0 0.7rem var(--a-color),
+    0 0 1.3rem var(--a-color),
+    inset 0 0 1rem var(--a-color);
+}
+
+
+.common{
+    position: relative;
+    border-radius: 15px;
+    flex: 5;
+    margin-right: 2rem;
+    background-color: #1e1e1e;
+    padding: 1rem;
+}
+
+.common * {
+    padding: 1rem;
+}
+
+.userImg {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--neon-color),
+    0 0 0.8rem var(--neon-color),
+    0 0 2.8rem var(--neon-color),
+    inset 0 0 1.3rem var(--neon-color);  
+}
+
+.detailOption {
+    color: aqua;
+}
+
+.userImg i {
+    font-size: 8rem;
+    color: white;
+}
+
+.userPass {
+    padding: 0 1rem
+}
+
+
+
+
+
+/* .submitBtn a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+} */
+
+
+
+
+
+
+
+
+
+/* -----------------------input------------------------- */
+
+input[type] {
+    padding: .5rem;
+    font-family: 'Poppins';
+}
+
+input[type='password'] {
+    margin-top: 1rem;
+}
+
+.submitBtn {
+    text-align: center;
+}
+
+input[type='submit'] {
+    text-align: center;
+    padding: .8rem;
+    width: 15%;
+    margin: 1rem auto;
+    background-color: orange;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+}
+
+input[type='submit']:hover {
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem orange,
+    0 0 0.7rem orange,
+    0 0 1.3rem orange,
+    inset 0 0 1rem orange;
+}
+
+input[type='email'] {
+    margin-left: 1.5rem;
+}
+
+
+
+
+
+
+
+
+/* ------------------------wallet--------------------------- */
+
+
+.wallet-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.walletIcon {
+    flex: 1;
+    margin: 2rem;
+    font-size: 10rem;
+    color: rgb(0, 168, 0);
+    text-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--nav-txt-color),
+    0 0 0.7rem var(--nav-txt-color),
+    0 0 1.3rem var(--nav-txt-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.walletIcon span {
+    font-size: 3.5rem;
+    color: white;
+    /* color: black; */
+    text-shadow:  
+    0 0 .1rem #fff,
+    0 0 .1rem #fff,
+    0 0 1rem var(--nav-txt-color),
+    0 0 0.5rem var(--nav-txt-color),
+    0 0 .8rem var(--nav-txt-color);
+}
+
+.updateMoney {
+    flex: 1;
+}
+
+input[type='number'] {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.updateMoneyBtn {
+    display: block;
+    width: 50%;
+    text-align: center;
+    padding: .8rem;
+    /* width: 100%;   */
+    margin: 3rem auto;  
+    background-color: orange;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+}
+
+.updateMoneyBtn:hover {
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem orange,
+    0 0 0.7rem orange,
+    0 0 1.3rem orange,
+    inset 0 0 1rem orange;
+}
+
+
+/* --------------------------footer------------------------- */
+
+
+
+
+.space {
+    height: 7rem;
+}
+
+footer {
+    margin-top: 8rem;
+    background-color: #1e1e1e;
+    height: 200px;
+    width: 100%;
+}
+
+footer i {
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.links {
+    width: 100%;
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+}
+
+footer p {
+    color: white;
+    margin-left: 10vw;  
+    margin-bottom: 1rem;
+}
+
+.made {
+    padding-top: .5rem;
+    text-align: center;
+}
+
+.made i {
+    padding-left: 1.5rem;
+    color: red;
+    font-size: 3rem;
+    text-shadow:  
+    0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 2rem red,
+    0 0 0.7rem red,
+    0 0 1.3rem red
+}
+
+footer span {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   

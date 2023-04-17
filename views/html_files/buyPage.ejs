@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css_files/buy_style.css">
+    <link rel="stylesheet" href="../css_files/dialog.css">
+    <script src="https://kit.fontawesome.com/4bdd37639a.js" crossorigin="anonymous"></script>
+    <script src="../js_files/buy_js.js"></script>
+    <script src="../js_files/search.js"></script>
+    <link rel="icon" type="image/x-icon" href="data:<%= resource.webImg.favicon.contentType %>;base64,<%= resource.webImg.favicon.data.toString('base64') %>">
+    <title>Buy-Bidding Wars</title>
+</head>
+<body>
+    <% if (resource.category == 'all') { %>
+        
+        <style>
+            :root {
+                --color: rgb(255, 0, 119);
+                }
+            </style>
+
+
+        <% } else if ( resource.category == 'vehicles' ) { %>
+         
+            <style>
+                :root {
+                    --color: orange;
+                }
+            </style>
+
+     
+        <% } else if (resource.category == 'antiques') { %>
+         
+            <style>
+                :root {
+                    --color: #bc13fe;
+                }
+            </style>
+
+
+            <% } else if (resource.category == 'furnitures') { %>
+
+                <style>
+                    :root {
+                        --color: rgb(255, 81, 0);
+                    }
+                </style>
+                
+                
+            <% } else if (resource.category == 'homeAppliances') { %>
+         
+                <style>
+                    :root {
+                        --color: rgb(119, 0, 255);
+                    }
+                </style>
+
+            <% } else if (resource.category == 'electronics') { %>
+         
+                <style>
+                    :root {
+                        --color: rgb(255, 16, 128);
+                    }
+                </style>
+
+            <% } else if (resource.category == 'fav') { %>
+ 
+                <style>
+                    :root {
+                        --color: red;
+                    }
+                </style>
+
+            <% } else if (resource.category == 'otherProducts') { %>
+                                     
+                <style>
+                    :root {
+                        --color: rgb(251, 255, 0);
+                    }
+                    .price {
+                        text-shadow:
+                        0 0 .7rem var(--color),
+                        0 0 .5rem var(--color),
+                        0 0 .8rem var(--color);
+                    }
+                    .prouductImage {
+                        box-shadow: 0 0 .4rem #fff,
+                            0 0 .4rem #fff,
+                            0 0 1.5rem var(--color),
+                            0 0 .7rem var(--color),
+                            0 0 1rem var(--color);
+                    }
+                    .title {
+                        text-shadow: 0 0 .1rem #fff,
+                        0 0 .1rem #fff,
+                        0 0 1.8rem var(--color),
+                        0 0 0.8rem var(--color),
+                        0 0 1.2rem var(--color);
+                    }
+                </style>
+
+    <% } %>
+
+    
+
+
+
+
+
+    <div class="main-div">
+
+        
+        <header>
+            
+            <a href="/">
+                <img src="data:<%= resource.webImg.logo.contentType %>;base64,<%= resource.webImg.logo.data.toString('base64') %>" class="logo"/>
+            </a>
+            <div class="header-div">
+                <ul>
+                <li class="searchListItem">
+                    <div>
+                        <input type="text" name="query" id="searchQuery" onkeyup="showResult(this.value)">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <div id="livesearch">
+                            
+                        </div>
+                    </div>
+                </li>
+
+                <li class="hover-list">
+                    <a href="/">Home</a>
+                </li>
+
+                
+                <% if (resource.category == 'fav') { %>
+                 
+                    <li class="hover-list">
+
+                            <a href="buy.html">Buy</a>
+
+                    </li>
+
+                    <li>
+                        <a id="present"> Favourites</a>
+                    </li>
+
+
+
+                    <% } else { %>
+                     
+                        <li>
+                            <a id="present"> Buy</a>
+                        </li>
+        
+                        <li class="hover-list">
+                            <% if (resource.isLogin == 1) { %>
+                                <a href= "favourites.html">Favourites</a>
+                                <% } else { %>
+                                    
+                                    <a onclick="showDialog('favDialog')">Favourites</a>
+                                    <dialog id="favDialog" class="dialog">
+                                        <p>
+                                            Login to view Favourites
+                                        </p>
+                                        <span onclick="closeDialog('favDialog')">
+                                            X
+                                        </span>
+                                    </dialog>
+        
+                            <% } %>
+                        </li>
+
+
+
+                    <% } %>
+
+
+
+                
+
+                <li class="hover-list">
+                    <% if (resource.isLogin == 1) { %>
+                        <a href="sell.ejs">Sell</a>
+                        <% } else { %>
+                            
+                            <a onclick="showDialog('sellDialog')">Sell</a>
+                            <dialog id="sellDialog" class="dialog">
+                                <p>
+                                    Login to sell Products
+                                </p>
+                                <span onclick="closeDialog('sellDialog')">
+                                    X
+                                </span>
+                            </dialog>
+
+                            <% } %>
+                </li>
+                
+                <li class="hover-list">
+                <% if (resource.isLogin == 1) { %>
+                    <a href="profile.html">My Profile</a>
+                    <% } else { %>
+                        <a href="login.html">Login / Register</a>
+                        <% } %>
+                </li>
+                
+                <% if (resource.isLogin == 1) { %>
+                <li class="hover-list logout">
+                    <a href="logout">
+                            <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                        </a>
+                    </li>
+                <% } %>
+                
+            </ul>
+        </div>
+
+    </header>
+    
+    
+    </div>
+    
+    
+    
+    
+    <% if (resource.category == 'fav' && resource.products.length ==0 ) { %>
+     
+        <div class="emptyDiv">
+            <a href="buy.html">
+
+                <div>
+                    <i class="fa-solid fa-plus"></i>
+                    <p>
+                        Add Items to Favourites
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        
+        <% } else { %>
+ 
+
+
+            <% if (resource.category == 'all') { %>
+        
+                <p class="title">All Products</p>
+        
+            <% } else if ( resource.category == 'vehicles' ) { %>
+                 
+                <p class="title">Vehicles</p>
+             
+            <% } else if (resource.category == 'antiques') { %>
+                 
+                <p class="title">Antiques</p>
+        
+            <% } else if (resource.category == 'furnitures') { %>
+        
+                <p class="title">Furnitures</p>
+                        
+            <% } else if (resource.category == 'homeAppliances') { %>
+                 
+                <p class="title">Home Appliances</p>
+        
+            <% } else if (resource.category == 'electronics') { %>
+                 
+                <p class="title">Electronics</p>
+        
+            <% } else if (resource.category == 'fav') { %>
+                 
+                <p class="title">My Favourites</p>
+
+            <% } else if (resource.category == 'otherProducts') { %>
+                                             
+                <p class="title">Other Products</p>
+        
+            <% } %>
+        
+            
+    <div class="product-main">
+        <div class="options">
+            <p onclick="showSort()" id="sort">
+                Sort
+            </p>
+            <a href="buy.html?cat=sort&opt=lth">
+                <p id="s1">
+                    Price lowest to highest
+                </p>
+            </a>
+            <a href="buy.html?cat=sort&opt=htl">
+            <p id="s2">
+                Price highest to lowest
+            </p>
+            </a>
+
+            <% if (resource.category == 'fav') { %>
+                <a href="favourites.html">
+                    <p id="s3">
+                        Reset Sort
+                    </p>
+                </a>
+                
+                <% } else { %>
+                    <a href="buy.html">
+                        <p id="s3">
+                            Reset Sort
+                        </p>
+                    </a>
+            <% } %>
+
+            
+            <p id="bs" onclick="backSort()">
+                &#129044;  back
+            </p>
+
+            
+            <p onclick="showFilter()" >
+                Filter
+            </p>
+            <p id="f1">
+                Rs.100-999
+            </p>
+            <p id="f2">
+                Rs.1000-3999
+            </p>
+            <p id="f3">
+                Rs.4000-9999
+            </p>
+        </div>
+        <div class="product-div">
+            
+            <% resource.products.forEach(product => { %>
+                <div class="product">
+
+                    <p class="status">
+                        <%= product.status %>
+                    </p>
+
+                    <style>
+                        .status {
+                            background: white;
+                            border-radius: 10px;    
+                            font-weight: bold;
+                            position: absolute;
+                            padding: .8rem;
+                            top: 8%;
+                            right: 2%;
+                            color: black
+                        }
+                    </style>
+
+                    <div class="productImage">
+                        <img src="data:<%= product.productImageContentType %>;base64,<%= product.productImageData.toString('base64') %>">
+                    </div>
+                    <p class="productName">
+
+                    <% if (resource.isLogin == 1) { %>
+                        <a href="buyProduct?id=<%= product.productID %>">
+                            <%= product.productName %>
+                        </a>
+                    <% } else { %>
+                    
+                        <a onclick="showDialog('buyDialog')"><%=product.productName%></a>
+                        <dialog id="buyDialog" class="dialog">
+                            <p>
+                                Login to view products
+                            </p>
+                            <span onclick="closeDialog('buyDialog')">
+                                X
+                            </span>
+                        </dialog>
+
+                    <% } %>
+
+                    </p>
+                    <p class="shortDescription">
+                        <%= product.shortDescription %>
+                    </p>
+                    <p class="startDate">
+                        Start Date: <%= new Date(product.startDate).toLocaleDateString() %>
+                        <span style="display: block;"> <%= new Date(product.startDate).toLocaleTimeString() %></span>
+                    </p>
+                    <p class="endDate">
+                        End Date: <%= new Date(product.endDate).toLocaleDateString() %>
+                        <span style="display: block;"> <%= new Date(product.endDate).toLocaleTimeString() %></span>
+                    </p>
+                    <p class="currentPrice">
+                        Current Price:   
+                        <span class="price">
+                             &#8377;<%= product.currentPrice %>
+                        </span>
+                    </p>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+    
+    <% } %>
+    
+
+    
+
+    
+
+
+
+    <footer>
+        <div class="made">
+            <span>Made with   
+                <i class="fa-sharp fa-solid fa-heart"></i>
+                
+            </span>
+        </div>
+        <p>CONTACT DETAILS: </p>
+        <div class="links">
+            <a href="https://github.com/santhosh-programmer" target="_blank">
+                <span>
+                    <i class="fa-brands fa-github"></i>
+                    Github
+                </span>
+            </a>
+            <a href="https://www.linkedin.com/in/santhosh-programmer" target="_blank">
+                <span>
+                    <i class="fa-brands fa-linkedin"></i>   
+                    LinkedIn
+                </span>
+            </a>
+            <a href="mailto:santhoshp.official@gmail.com" target="_blank">
+                <span>
+                    <i class="fa-solid fa-envelope"></i>
+                    santhoshp.official@gmail.com
+                </span>
+            </a>
+            <a href="https://www.instagram.com/santhosh_pgmr" target="_blank"> 
+                <span>
+                    <i class="fa-brands fa-instagram"></i>
+                    Instagram
+                </span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        
+        if(performance.navigation.type == 2){
+            location.reload(true);
+        }
+
+        </script>
+
+</body>
+</html>
