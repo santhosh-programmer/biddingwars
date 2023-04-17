@@ -13,7 +13,7 @@ app.set('view engine','ejs')
 
 // const port = parseInt(process.env.PORT)
 
-app.listen(80, async () => {
+app.listen(process.env.PORT || 80 , async () => {
     await connectDB().then(() =>
     console.log(`listening on port localhost:80`
     ))
