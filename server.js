@@ -2,8 +2,6 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const { connectDB }=require('./node_files/connection')
-const { verifyRegisterDetails , insertUser } = require('./node_files/registerUser')
-const { verifyLoginDetails, loginUser } = require('./node_files/loginUser')
 const cookieParser =  require('cookie-parser')
 const { client } = require('./node_files/connection')
 const multer = require('multer')
@@ -11,7 +9,7 @@ const storage = multer.memoryStorage()
 const upload = multer(
     { storage : storage}
 )
-const { updateUser } = require('./node_files/updateUser')
+
 
 
 app.use(cookieParser())
@@ -34,7 +32,9 @@ app.listen(process.env.PORT || port, async () => {
 }
 )
 
-
+const { updateUser } = require('./node_files/updateUser')
+const { verifyRegisterDetails , insertUser } = require('./node_files/registerUser')
+const { verifyLoginDetails, loginUser } = require('./node_files/loginUser')
 
 
 

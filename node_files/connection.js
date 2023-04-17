@@ -1,7 +1,6 @@
 const { MongoClient } = require('mongodb')
-const uri = "mongodb+srv://santhosh-dev:santhoshpgmr@biddingwars.edtrsts.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb://santhosh-dev:santhoshpgmr@ac-zgg22pc-shard-00-00.edtrsts.mongodb.net:27017,ac-zgg22pc-shard-00-01.edtrsts.mongodb.net:27017,ac-zgg22pc-shard-00-02.edtrsts.mongodb.net:27017/?ssl=true&replicaSet=atlas-qcj3yt-shard-0&authSource=admin&retryWrites=true&w=majority"
 const client = new MongoClient(uri)
-
 let userDetails 
 
 function getUserDetails() {
