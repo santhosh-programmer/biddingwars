@@ -230,23 +230,23 @@
 
             <div class="firstName">
                 <span class="detailOption">First Name : </span>
-                <input type="text" name="firstName" value=" <%= resource.user.firstName%>">
+                <input type="text" name="firstName" value="<%=resource.user.firstName%>">
             </div>
             <div class="lastName">
                 <span class="detailOption">Last Name : </span>
-                <input type="text" name="lastName" value=" <%= resource.user.lastName%>">
+                <input type="text" name="lastName" value="<%=resource.user.lastName%>">
             </div>
             <div class="userName">
                 <span class="detailOption">User Name : </span>
-                <span> <%= resource.user.userName  %></span>
+                <span><%=resource.user.userName%></span>
             </div>
             <div class="userEmail">
                 <span class="detailOption">E-mail : </span>
-                <input type="email" name="userEmail" value="<%= resource.user.userEmail%>" size="40">
+                <input type="email" name="userEmail" value="<%=resource.user.userEmail%>" size="40">
             </div>
             <div class="userPass">
                 <span class="detailOption">Password : </span> 
-                <input type="password" name="userPassword" value=" <%= resource.user.userPassword%>">
+                <input type="password" name="userPassword" value="<%=resource.user.userPassword%>">
             </div>
             <div class="submitBtn">
                 <input type="submit" value="Save">

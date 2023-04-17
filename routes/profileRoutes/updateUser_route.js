@@ -40,7 +40,7 @@ function verifyRegisterDetails(userName, firstName, lastName, userPassword, conf
 router.post('/updateUser', async (req, res) => {
 
     let {firstName, lastName, userPassword, userEmail} = req.body
-    let status = await verifyRegisterDetails(req.cookies.userName, firstName,lastName, userPassword, userPassword)
+    let status = verifyRegisterDetails(req.cookies.userName, firstName,lastName, userPassword, userPassword)
     if(status == 'ok'){
         let status = await updateUser(req.cookies.userName, firstName, lastName, userPassword, userEmail )
         if(status === 'ok') {
