@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css_files/login_styles.css">
+    <link rel="stylesheet" href="../css_files/dialog.css">
+    <!-- <script src="../js_files/sell_js.js"></script> -->
+    <link rel="icon" type="image/x-icon" href="data:<%= resource.webImg.favicon.contentType %>;base64,<%= resource.webImg.favicon.data.toString('base64') %>">
+    <!-- <meta http-equiv="refresh" content="0;URL= 'login'" />   -->
+    <title>Login-Bidding Wars</title>
+</head>
+<body>
+
+    <dialog id="success" class="dialog">
+        <p>
+            <%=resource.message%>
+        </p>
+        <span onclick="closeDialog('success')">
+            X
+        </span>
+    </dialog>
+
+    <script>
+        let status = `<%=resource.message %>`
+        console.log(status)
+        if(status) {
+            let element = document.getElementById('success')
+            element.showModal()
+        }
+        function closeDialog(id) {
+            window.location.href = window.location.origin + '/login';
+            let element = document.getElementById(id)
+            element.close()
+        }
+    </script>
+
+
+    <div class="main-div"> 
+        <div class="logo">
+            <img src="data:<%=resource.webImg.logo.contenType%>;base64,<%= resource.webImg.logo.data.toString('base64') %>" class="logo"/>
+
+        </div>
+
+        <form method="post" action="/login-user" class="login-form">
+            <div class="login-box">
+                <p class="title">Login</p>
+                <div class="name-field">
+                    <label for="user-field">
+                        <p>
+                            User Name : 
+                        </p>
+                    </label>
+                    <input type="text" id="user-field" name="userName" required minlength="5">
+                </div>
+                <div class="password-field">
+                    <label for="pass-field">
+                        <p>
+                            Password : 
+                        </p>
+                    </label>
+                    <input type="password" id="pass-field" name="userPassword" required minlength="8" >
+                </div>
+                <div class="register-field">
+                    <a href="register">
+                        <p>
+                            New user? Register here
+                        </p>
+                    </a>
+                </div>
+                <div class="login-btn-field">
+                    <input type="submit" value="Login" class="login-btn">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css_files/buyProduct_style.css">
+    <link rel="stylesheet" href="../css_files/dialog.css">
+    <script src="https://kit.fontawesome.com/4bdd37639a.js" crossorigin="anonymous"></script>
+    <script src="../js_files/buyProduct_js.js"></script>
+    <script src="../js_files/search.js"></script>
+    <link rel="icon" type="image/x-icon" href="data:<%= resource.webImg.favicon.contentType %>;base64,<%= resource.webImg.favicon.data.toString('base64') %>">
+    <title>Buy-Bidding Wars</title>
+</head>
+<body>
+
+    <script>
+
+        function addFav(productID) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                let element = document.getElementById('favDialog')
+                if(this.responseText == 1) {
+                    document.getElementById('favIcon').style.color = 'rgb(255,0,88)'
+                    document.getElementById('favIcon').style.textShadow = ' 0 0 .2rem #fff, 0 0 .2rem #fff, 0 0 2rem rgb(255, 55, 88), 0 0 0.7rem rgb(255, 55, 88),0 0 1.3rem rgb(255, 55, 88)'
+                    document.getElementById('favDialogContent').innerHTML = 'Added to favourites'
+                }
+                else {
+                    document.getElementById('favDialogContent').innerHTML = 'Removed from favourites'
+                    document.getElementById('favIcon').style.color = 'white'
+                    document.getElementById('favIcon').style.textShadow = 'none'
+                }
+                element.showModal()        
+            }            
+            xhttp.open("PUT", window.location.origin + '/api/addFav/?id=' + productID);
+            xhttp.send();
+        }
+
+        function updateNewBid() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                document.getElementById('bestPrice').innerHTML = '\&\#8377;' + this.responseText;
+            }            
+            let price = parseInt(document.getElementById('increment').innerHTML.substring(1))
+            xhttp.open("GET", window.location.origin + '/api/update/?id=' + `<%= resource.product.productID %>` + '&price=' + price);
+            xhttp.send();
+        }
+
+        
+        function load() {
+            const xhttp = new XMLHttpRequest()
+            xhttp.onload = function() {
+                let currentPrice = JSON.parse(this.response).currentPrice
+                let status = JSON.parse(this.response).status
+                let isOwn = JSON.parse(this.response).isOwn
+                document.getElementById('currentPrice').innerHTML = '\&\#8377;' + currentPrice;
+                let element = document.getElementById('increment')
+                if(parseInt(element.innerHTML.substring(1)) < parseInt(currentPrice)) {
+                    element.innerHTML = '\&\#8377;' + currentPrice;
+                }
+                if(status == 'live') { 
+                    if(`<%=resource.isLogin%>`== 0 ) {
+                        document.getElementById('waitingBid').style.display = 'none'
+                        document.getElementById('noBid').style.display = 'block'
+                    }
+                    else if(isOwn == 'yes') {
+                        document.getElementById('waitingBid').style.display = 'none'
+                        document.getElementById('ownBid').style.display = 'block'
+                    }
+                    else {
+                        document.getElementById('waitingBid').style.display = 'none'
+                        document.getElementById('liveBid').style.display = 'block'
+                    }
+                    setTimeout(load,1000)
+                }
+                else if(status =='waiting') {
+                    document.getElementById('waitingBid').style.display = 'block'
+                }
+                else {
+                    document.getElementById('liveBid').style.display = 'none'
+                    document.getElementById('ownBid').style.display = 'none'
+                    document.getElementById('endBid').style.display = 'block'
+                }
+
+            }
+            xhttp.open("GET", window.location.origin + '/api/getCurrentPrice/?id=' + `<%= resource.product.productID %>`);
+            xhttp.send();
+        }
+
+
+        function loadBestPrice() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                document.getElementById('bestPrice').innerHTML = '\&\#8377;' + this.responseText;
+            }
+            xhttp.open("GET",  window.location.origin + '/api/getBestPrice/?id=' + `<%= resource.product.productID %>`);
+            xhttp.send();
+        }
+
+        load()
+        loadBestPrice()
+
+    </script>
+
+    <div class="main-div">
+
+
+        <header>
+    
+            <a href="/">
+                <img src="data:<%= resource.webImg.logo.contentType %>;base64,<%= resource.webImg.logo.data.toString('base64') %>" class="logo"/>
+            </a>
+            <div class="header-div">
+                <ul>
+                    <li class="searchListItem">
+                        <div>
+                            <input type="text" name="query" id="searchQuery" onkeyup="showResult(this.value)">
+                            <button type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <div id="livesearch">
+
+                            </div>
+                        </div>
+                    </li>
+    
+                    <li class="hover-list">
+                            <a href="/">Home</a>
+                    </li>
+    
+                    <li>
+                        <a id="present"> Buy</a>
+                    </li>
+    
+                    <li class="hover-list">
+                        <% if (resource.isLogin == 1) { %>
+                            <a href="favourites">Favourites</a>
+                            <% } else { %>
+                                
+                                <a onclick="showDialog('favDialog')">Favourites</a>
+                                <dialog id="favDialog" class="dialog">
+                                    <p>
+                                        Login to view Favourites
+                                    </p>
+                                    <span onclick="closeDialog('favDialog')">
+                                        X
+                                    </span>
+                                </dialog>
+    
+                        <% } %>
+                    </li>
+    
+                    <li class="hover-list">
+                        <% if (resource.isLogin == 1) { %>
+                            <a href="sell">Sell</a>
+                            <% } else { %>
+                                
+                                <a onclick="showDialog('sellDialog')">Sell</a>
+                                <dialog id="sellDialog" class="dialog">
+                                    <p>
+                                        Login to sell Products
+                                    </p>
+                                    <span onclick="closeDialog('sellDialog')">
+                                        X
+                                    </span>
+                                </dialog>
+    
+                        <% } %>
+                    </li>
+    
+                    <li class="hover-list">
+                    <% if (resource.isLogin == 1) { %>
+                        <a href="profile">My Profile</a>
+                        <% } else { %>
+                            <a href="login">Login / Register</a>
+                        <% } %>
+                    </li>
+    
+                    <% if (resource.isLogin == 1) { %>
+                    <li class="hover-list logout">
+                            <a href="logout">
+                                <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+                    <% } %>
+    
+                </ul>
+            </div>
+    
+        </header>
+        
+    
+        
+        
+        
+        <div class="product">
+            <dialog id="favDialog" class="dialog">
+                <p id="favDialogContent">      
+                </p>
+                <span onclick="closeDialog('favDialog')">
+                    X
+                </span>
+            </dialog>
+        <div class="productImg">
+            <div class="orgImg" onclick="showFullscreen()">
+                <div class="dummy">
+                    <p id="tff"> Tap for fullscreen</p>
+                </div>
+                <img src="data:<%= resource.product.productImageContentType %>;base64,<%= resource.product.productImageData.toString('base64') %>">
+            </div>
+        </div>
+        <dialog id="fullImg" onclick="leaveFullscreen()"">
+
+            <img  src="data:<%= resource.product.productImageContentType %>;base64,<%= resource.product.productImageData.toString('base64') %>">
+        </dialog>
+        <div class="productDetails">
+            <div class="productName">
+                <p><%= resource.product.productName %></p>
+            </div>
+
+            <% if ( resource.isFav == 'yes') { %>
+                <i class="fa-solid fa-heart" style="
+                    color: rgb(255,0,55); 
+                    text-shadow:     
+                        0 0 .2rem #fff,
+                        0 0 .2rem #fff,
+                        0 0 2rem rgb(255, 55, 88),
+                        0 0 0.7rem rgb(255, 55, 88),
+                        0 0 1.3rem rgb(255, 55, 88)
+                    
+                    " onclick="addFav(`<%= resource.product.productID %>`)" id="favIcon"></i>
+                
+            <% } else { %>
+
+                <i class="fa-solid fa-heart" style="color: #ffffff;" onclick="addFav(`<%= resource.product.productID %>`)" id="favIcon"></i>
+
+        <% } %>
+
+            <div class="detailDesign">
+                <p><span> Seller Name:</span> <%= resource.product.sellerUserName %></p>
+            </div>
+            <div class="detailDesign">
+                <p><span>Short Description: </span> <%= resource.product.shortDescription %></p>
+            </div>
+            <div class="detailDesign">
+                <p><span>Category: </span> <%= resource.product.category %></p>
+            </div>
+            <div class="detailDesign">
+                <p><span>Description: </span> <%= resource.product.description %></p>
+            </div>
+            <div class="detailDesign">
+                <p><span>Reason: </span><%= resource.product.reason %></p>
+            </div>
+            <div class="detailDesign">
+                <p> <span>Start Date:</span> <%= new Date(resource.product.startDate).toLocaleString() %></p>
+            </div>
+            <div class="detailDesign">
+                <p> <span> End Date: </span> <%= new Date(resource.product.endDate).toLocaleString() %></p>
+            </div>
+            <div class="detailDesign">
+                <p><span>Status: </span>
+                
+                    <% if (resource.product.status == 'waiting') { %>
+                        Not Started
+                        <% } else { %>
+                         <%= resource.product.status %>
+                    <% } %>
+                
+                </p>
+            </div>
+            <div class="detailDesign">
+                <p> <span> Initial Price: </span> <%= resource.product.initialPrice %></p>
+            </div>
+            <div>
+                <p><span style="color: yellow">Your last bid:</span> <span id="bestPrice"> 0 </span></p>
+            </div>
+        </div>
+
+            <div class="price">
+                <p>Current Price: </p><span id="currentPrice">0</span>
+            </div>
+            <div class="increment">
+                <span id="decButton" onclick="decrementBid()">
+                    <i class="fa-solid fa-minus" style="color: #ffffff;"></i>
+                </span>
+                <span id="increment">
+                    0
+                </span>
+                <span id="incButton" onclick="incrementBid()">
+                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                </span>
+            </div>
+
+
+                <div class="bid" id="ownBid">
+                    <button type="submit" id="notAvailable">
+                        <i class="fa-solid fa-ban fa-beat"></i>
+                        OWN PRODUCT
+                    </button>
+                </div>
+
+
+                    <div class="bid" id="waitingBid">
+                        <button type="submit" id="notAvailable">
+                            <i class="fa-solid fa-ban fa-beat"></i>
+                            NOT STARTED
+                        </button>
+                    </div>
+
+
+
+                     
+                    <div class="bid" id="endBid">
+                        <button type="submit" id="notAvailable">
+                            <i class="fa-solid fa-ban fa-beat"></i>
+                            ENDED
+                        </button>
+                    </div>
+
+                    <div class="bid" id="noBid">
+                        <button type="submit" id="notAvailable">
+                            <i class="fa-solid fa-ban fa-beat"></i>
+                            LOGIN
+                        </button>
+                    </div>
+
+                 
+                    <div class="bid" id="liveBid">
+                        <button type="submit" onclick="updateNewBid()">BID</button>
+                    </div>
+
+
+
+
+            
+        <!-- </div> -->
+    </div>
+
+
+
+</div>
+
+
+        <footer>
+            <div class="made">
+                <span>Made with   
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+    
+                </span>
+            </div>
+            <p>CONTACT DETAILS: </p>
+            <div class="links">
+                <a href="https://github.com/santhosh-programmer" target="_blank">
+                    <span>
+                        <i class="fa-brands fa-github"></i>
+                        Github
+                    </span>
+                </a>
+                <a href="https://www.linkedin.com/in/santhosh-programmer" target="_blank">
+                    <span>
+                        <i class="fa-brands fa-linkedin"></i>   
+                        LinkedIn
+                    </span>
+                </a>
+                <a href="mailto:santhoshp.official@gmail.com" target="_blank">
+                    <span>
+                        <i class="fa-solid fa-envelope"></i>
+                        santhoshp.official@gmail.com
+                    </span>
+                </a>
+                <a href="https://www.instagram.com/santhosh_pgmr" target="_blank"> 
+                    <span>
+                        <i class="fa-brands fa-instagram"></i>
+                        Instagram
+                    </span>
+                </a>
+            </div>
+        </footer>
+
+
+
+</body>
+</html>

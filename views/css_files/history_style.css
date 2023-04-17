@@ -1,0 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}    
+
+
+:root {
+    --nav-txt-color: rgb(0, 255, 85);
+    --logo-color: red;
+    --menu-color: rgb(85,83,83);
+    --c-color:  rgb(0, 247, 255);
+    --e-color: rgb(0, 255, 85);
+    --b-color: orange;
+    --m-color: yellow;
+    --b-color: red;
+    --f-color: #bc13fe;;
+    --a-color: rgb(255, 81, 0);
+    --ha-color: rgb(85, 83, 83);
+    --d-color: rgb(0, 191, 255);
+    --neon-color: #0084ff;
+}
+
+html, body {    
+    width: 100%;
+    height: 100vh;
+    background: black;
+    scroll-behavior: smooth;
+    /* font-family: 'Roboto', sans-serif; */
+}
+
+.main-div {
+    padding: 1rem;
+}
+
+
+
+header a {
+    float: left;
+}
+
+.logo {
+    height: 70px;
+    border-radius: 10px;
+    box-shadow:  
+    0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 3rem var(--logo-color),
+    0 0 0.8rem var(--logo-color),
+    0 0 1.4rem var(--logo-color);
+}
+
+.header-div ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    height: 50px;
+}
+
+.header-div ul li a {
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    color: white;
+}
+
+
+.hover-list {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+}
+
+.hover-list:hover{
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--nav-txt-color),
+    0 0 0.7rem var(--nav-txt-color),
+    0 0 1.3rem var(--nav-txt-color),
+    inset 0 0 1rem var(--nav-txt-color);
+}
+
+.logout {
+    flex: 0.5;
+}
+
+header li {
+    flex: 1;
+    text-align: center;
+    margin: auto 1rem;
+}
+
+header li a{   
+    padding: .6rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.searchListItem {
+    flex: 4;
+    position: relative;
+}
+
+#livesearch {
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 120%;
+    left: 11%;
+    width: 350px;
+    overflow-wrap: break-word;
+    z-index: 1000;
+}
+
+#livesearch a {
+    color: blue;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(95, 95, 95);
+}   
+
+#livesearch a:hover {
+    background-color: #d3d3d3;
+}
+
+.searchListItem div button {
+    padding: .2rem;
+    font-size: 1.05rem;
+    border-radius: 5px;
+}
+
+#searchQuery {
+    width: 65%;
+    height: 2rem;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: .5rem;
+    font-size: 1.1rem;
+}
+
+button {
+    background-color: orange;
+    border:none;
+    height: 2rem;
+    width: 3rem;
+}
+
+
+#present {
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--a-color),
+    0 0 0.7rem var(--a-color),
+    0 0 1.3rem var(--a-color),
+    inset 0 0 1rem var(--a-color);
+}
+
+.hover-list:hover, #present:hover {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+/* ----------------------profile main------------------------ */
+
+
+
+.profileMain {
+    margin-top: 3rem;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.profileOptions {
+    align-self: flex-start;
+    flex: 1;
+    text-align: center;
+    position: sticky;
+    top: 20%;
+}
+
+.profileOptions p {
+    margin: 1rem;
+    margin-right: 2rem;
+    padding: 1rem;
+    background-color: #1e1e1e;
+    border-radius: 15px;
+}
+
+.profileOptions a {
+    text-decoration: none;
+    color: white;
+}
+
+#active {
+    background-color: black;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--a-color),
+    0 0 0.7rem var(--a-color),
+    0 0 1.3rem var(--a-color),
+    inset 0 0 1rem var(--a-color);
+}
+
+.profileOptions p:hover {
+    background-color: black;
+    box-shadow:  
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 1.5rem var(--nav-txt-color),
+    0 0 0.7rem var(--nav-txt-color),
+    0 0 1.3rem var(--nav-txt-color),
+    inset 0 0 1rem var(--nav-txt-color);
+}
+
+.common{
+    position: relative;
+    border-radius: 15px;
+    flex: 5;
+    margin-right: 2rem;
+    background-color: #1e1e1e;
+    padding: 1rem;
+}
+
+.common * {
+    padding: 1rem;
+}
+
+.userImg {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem var(--neon-color),
+    0 0 0.8rem var(--neon-color),
+    0 0 2.8rem var(--neon-color),
+    inset 0 0 1.3rem var(--neon-color);  
+}
+
+.detailOption {
+    color: aqua;
+}
+
+.userImg i {
+    font-size: 8rem;
+    color: white;
+}
+
+.userPass {
+    padding: 0 1rem
+}
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------empty product list-------------------------- */
+
+
+
+/* ---------------------------empty favourites----------------------- */
+
+
+.emptyDiv a {
+    color: white;
+}
+
+.emptyDiv {
+    position: relative;
+    height: 80%;
+    width: 100%;
+}
+
+.emptyDiv div {
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #1e1e1e;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%,-50%);
+}
+
+.emptyDiv div i {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.emptyDiv div p {
+    margin: 1rem;
+}
+
+.emptyDiv div:hover {
+    box-shadow: 0 0 1rem #fff,
+    0 0 1rem #fff,
+    0 0 4rem var(--menu-color),
+    0 0 1rem var(--menu-color),   
+    0 0 1.6rem var(--menu-color),
+    inset 0 0 1rem var(--menu-color)
+}
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------product------------------------- */
+
+.product-div {
+    flex: 5;
+    word-break: break-all;
+    grid-area: product;
+    width: 100%;
+}
+
+.product {
+    position: relative;
+    background-color: #111111;
+    margin: 1rem;
+    display: grid;
+    padding: 1rem  0 1rem 1rem;
+    grid-template-areas:
+    'image name name name'
+    'image desc desc desc'
+    'image start end price';
+}
+
+.productImage {
+    grid-area: image;
+    margin: 1rem;
+    border-radius: 15px;
+}
+
+
+.productName {
+    grid-area: name;
+    clear: both;
+    width: 80%;
+    margin: 1rem;
+    font-size: 1.5rem;
+    text-shadow: 0 0 0rem #fff,
+    0 0 0rem #fff,
+    0 0 1rem var(--d-color),
+    0 0 0.6rem var(--d-color),
+    0 0 0.8rem var(--d-color);
+}
+
+.product i {
+    font-size: 2rem;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.productName:hover {
+    text-decoration: underline;
+}
+
+.shortDescription {
+    grid-area: desc;
+    margin: 1rem;
+    color: rgba(255, 255, 255, 0.945);
+}
+
+.startDate {
+    margin: 1rem;
+    text-align: center;
+    grid-area: start;
+    align-self: center;
+}
+
+.endDate {
+    grid-area: end;
+    text-align: center;
+    margin: 1rem;
+    align-self: center;
+}
+
+.currentPrice {
+    grid-area: price;
+    text-align: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product img {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.product a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------footer------------------------- */
+
+
+
+
+.space {
+    height: 7rem;
+}
+
+footer {
+    margin-top: 8rem;
+    background-color: #1e1e1e;
+    height: 200px;
+    width: 100%;
+}
+
+footer i {
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.links {
+    width: 100%;
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+}
+
+footer p {
+    color: white;
+    margin-left: 10vw;  
+    margin-bottom: 1rem;
+}
+
+.made {
+    padding-top: .5rem;
+    text-align: center;
+}
+
+.made i {
+    padding-left: 1.5rem;
+    color: red;
+    font-size: 3rem;
+    text-shadow:  
+    0 0 .4rem #fff,
+    0 0 .4rem #fff,
+    0 0 2rem red,
+    0 0 0.7rem red,
+    0 0 1.3rem red
+}
+
+footer span {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
