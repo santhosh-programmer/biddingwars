@@ -37,6 +37,7 @@ html, body {
 
 .main-div {
     padding: 1rem;
+    min-height: 90vh;
 }
 
 
@@ -337,11 +338,17 @@ button {
 
 /* -----------------------------product------------------------- */
 
+.product-main {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
 .product-div {
     flex: 5;
     word-break: break-all;
     grid-area: product;
-    width: 100%;
+    width: 95%;
 }
 
 .product {
@@ -350,24 +357,38 @@ button {
     margin: 1rem;
     display: grid;
     padding: 1rem  0 1rem 1rem;
+    /* grid-row: auto; */
     grid-template-areas:
     'image name name name'
     'image desc desc desc'
-    'image start end price';
+    'image extra extra extra';
 }
 
 .productImage {
     grid-area: image;
     margin: 1rem;
     border-radius: 15px;
+    align-self: center;
+    height: 15rem;
+    width: 15rem;
+    background-color: black;
 }
 
+
+.extra {
+    grid-area: extra;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
 .productName {
     grid-area: name;
     clear: both;
-    width: 80%;
+    /* width: 80%; */
     margin: 1rem;
+    margin-right: 8rem;
     font-size: 1.5rem;
     text-shadow: 0 0 0rem #fff,
     0 0 0rem #fff,
@@ -396,19 +417,19 @@ button {
 .startDate {
     margin: 1rem;
     text-align: center;
-    grid-area: start;
+    /* grid-area: start; */
     align-self: center;
 }
 
 .endDate {
-    grid-area: end;
+    /* grid-area: end; */
     text-align: center;
     margin: 1rem;
     align-self: center;
 }
 
 .currentPrice {
-    grid-area: price;
+    /* grid-area: price; */
     text-align: center;
     align-self: center;
     display: flex;

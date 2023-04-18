@@ -192,7 +192,7 @@ button {
 .carousel-main {
     position: relative;
     width: 100%;
-    height: 30rem
+    height: 500px
 }
 
 .leftArrow, .rightArrow {

@@ -170,7 +170,7 @@
         </header>
 
         
-    </div>
+    <!-- </div> -->
 
     
 
@@ -313,20 +313,23 @@
                         <p class="shortDescription">
                             <%= product.shortDescription %>
                         </p>
-                        <p class="startDate">
-                            Start Date: <%= new Date(product.startDate).toLocaleDateString() %>
-                            <span style="display: block;"> <%= new Date(product.startDate).toLocaleTimeString() %></span>
-                        </p>
-                        <p class="endDate">
-                            End Date: <%= new Date(product.endDate).toLocaleDateString() %>
-                            <span style="display: block;"> <%= new Date(product.endDate).toLocaleTimeString() %></span>
-                        </p>
-                        <p class="currentPrice">
-                            Price:   
-                            <span class="price">
-                                 &#8377;<%= product.currentPrice %>
-                            </span>
-                        </p>
+                        <div class="extra">
+
+                            <p class="startDate">
+                                Start Date: <%= new Date(product.startDate).toLocaleDateString() %>
+                                <span style="display: block;"> <%= new Date(product.startDate).toLocaleTimeString() %></span>
+                            </p>
+                            <p class="endDate">
+                                End Date: <%= new Date(product.endDate).toLocaleDateString() %>
+                                <span style="display: block;"> <%= new Date(product.endDate).toLocaleTimeString() %></span>
+                            </p>
+                            <p class="currentPrice">
+                                Price:   
+                                <span class="price">
+                                    &#8377;<%= product.currentPrice %>
+                                </span>
+                            </p>
+                        </div>
                     </div>
                 <% }) %>
 
@@ -346,7 +349,7 @@
         
     </div>
 
-
+    </div>
       
 
       

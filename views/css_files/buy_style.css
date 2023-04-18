@@ -175,7 +175,9 @@ button {
 }
 
 
-
+/* .main-div {
+    height: 100vh;
+} */
 
 
 
@@ -186,6 +188,7 @@ button {
 
 
 .product-main  {
+    /* height: 100vh; */
     color: white;
     display: flex;
     align-items: center;
@@ -206,14 +209,27 @@ button {
     margin: 1rem;
     display: grid;
     padding: 1rem  0 1rem 1rem;
+    /* grid-template-columns: 17.rem 1fr 1fr 1fr; */
+    grid-row: auto;
     grid-template-areas:
     'image name name name'
     'image desc desc desc'
-    'image start end price';
+    'image extra extra extra';
+}
+
+.extra {
+    grid-area: extra;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .productImage {
     grid-area: image;
+    align-self: center;
+    height: 15rem;
+    width: 15rem;
     margin: 1rem;
     border-radius: 15px;
     background-color: black ;
@@ -226,6 +242,7 @@ button {
 
 
 .price {
+    /* flex-wrap: wrap; */
     font-size: 2rem;
     margin: 1rem;
     text-shadow: 0 0 .2rem #fff,
@@ -266,6 +283,7 @@ button {
 }
 
 .startDate {
+    /* flex-wrap: wrap; */
     margin: 1rem;
     text-align: center;
     grid-area: start;
@@ -273,6 +291,7 @@ button {
 }
 
 .endDate {
+    /* flex-wrap: wrap; */
     grid-area: end;
     text-align: center;
     margin: 1rem;
@@ -444,6 +463,9 @@ button {
 }
 
 footer {
+    /* bottom: -100vh; */
+    /* position: sticky; */
+    /* bottom: 0; */
     margin-top: 8rem;
     background-color: #1e1e1e;
     height: 200px;

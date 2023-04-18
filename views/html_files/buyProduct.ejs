@@ -46,6 +46,23 @@
             xhttp.send();
         }
 
+        function getWalletDetails() {
+            const xhttp = new XMLHttpRequest()
+            xhttp.onload = function () {
+                // console.log(this.response.money)
+                let wallet = JSON.parse(this.response).money
+                let currentPrice = parseInt(document.getElementById('increment').innerText.substring(1))
+                if(wallet >= currentPrice) {
+                    updateNewBid()
+                }
+                else {
+                    document.getElementById('updateWalletDialog').showModal()
+                }
+                // console.log(this.responseText.money)
+            }
+            xhttp.open('GET',window.location.origin + '/api/getWallet')
+            xhttp.send()
+        }
         
         function load() {
             const xhttp = new XMLHttpRequest()
@@ -101,6 +118,16 @@
         loadBestPrice()
 
     </script>
+
+<dialog id="updateWalletDialog" class="dialog">
+    <p id="updateWalletContent">
+        Cannot bid more than wallet balance      
+    </p>
+    <span onclick="closeDialog('updateWalletDialog')">
+        X
+    </span>
+</dialog>
+
 
     <div class="main-div">
 
@@ -326,7 +353,7 @@
 
                  
                     <div class="bid" id="liveBid">
-                        <button type="submit" onclick="updateNewBid()">BID</button>
+                        <button type="submit" onclick="getWalletDetails()">BID</button>
                     </div>
 
 

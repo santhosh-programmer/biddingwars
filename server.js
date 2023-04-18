@@ -101,4 +101,6 @@ app.get('/api/isFav', require(path.resolve('api','isFav.js')))
 app.put('/api/updateWallet' , require(path.resolve('api','updateWallet.js')))
 
 app.get('/api/results', require(path.resolve('api','results.js')) )
+
+app.get('/api/getWallet', require(path.resolve('api','getWallet.js')) )
  
