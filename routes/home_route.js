@@ -4,10 +4,17 @@ const path = require('path')
 const { client } = require('./connection')
 let webImages = client.db('BiddingWars').collection('webImages')
 let homeImages =  client.db('BiddingWars').collection('homeImages')
+let productDetails = client.db('BiddingWars').collection('productDetails')
 
 router.get('/', async ( req, res ) => {
     let webImageList = await webImages.find({}).toArray()
     let homeImageList =  await homeImages.find({}).toArray()
+    let furnitureMenu = await productDetails.find( { category : 'Furnitures'} ).limit(3).toArray()
+    let vehicleMenu = await productDetails.find( { category : 'Vehicle'} ).limit(3).toArray()
+    let antiquesMenu = await productDetails.find( { category : 'Antiques'} ).limit(3).toArray()
+    let haMenu = await productDetails.find( { category : 'Home Appliances'} ).limit(3).toArray()
+    let electronicsMenu = await productDetails.find( { category : 'Electronics'} ).limit(3).toArray()
+    let opMenu = await productDetails.find( { category : 'Other products'} ).limit(3).toArray()
 
     let isLogin= req.cookies.isLogin
 
@@ -16,24 +23,25 @@ router.get('/', async ( req, res ) => {
         favicon: webImageList[1],
     }
 
+    // console.log(furnitureMenu)
     let homeImg = {
-        antiquesMenu: homeImageList[0],
-        bikesMenu: homeImageList[1],
-        furnituresMenu: homeImageList[2],
-        electronicsMenu: homeImageList[3],
-        haMenu: homeImageList[4],
-        opMenu: homeImageList[5],
-        carousel0: homeImageList[6],
-        carousel1: homeImageList[7],
-        carousel2: homeImageList[8],
-        carousel3: homeImageList[9],
-        carousel4: homeImageList[10],
+        carousel0: homeImageList[0],
+        carousel1: homeImageList[1],
+        carousel2: homeImageList[2],
+        carousel3: homeImageList[3],
+        carousel4: homeImageList[4],
     }
     res.render(path.join(__dirname,'../views/html_files/home.ejs'), 
     {resource: {
         isLogin: isLogin,
         webImg : webImg,
         homeImg : homeImg,
+        antiquesMenu : antiquesMenu,
+        opMenu : opMenu,
+        furnitureMenu : furnitureMenu,
+        vehicleMenu :  vehicleMenu,
+        electronicsMenu : electronicsMenu,
+        haMenu : haMenu
     }}
     )
 })

@@ -129,7 +129,7 @@
     <div class="menus" id="menus">
         <div>
             <a href="antiques">
-                <img src="data:<%= resource.homeImg.antiquesMenu.contentType %>;base64,<%= resource.homeImg.antiquesMenu.data.toString('base64') %>">
+                <img src="data:<%= resource.antiquesMenu[0].productImageContentType %>;base64,<%= resource.antiquesMenu[0].productImageData.toString('base64') %>">
             </a>
             <p>
                 Antiques
@@ -137,7 +137,7 @@
         </div>
         <div>
             <a href="vehicle">
-                <img src="data:<%= resource.homeImg.bikesMenu.contentType %>;base64,<%= resource.homeImg.bikesMenu.data.toString('base64') %>">
+                <img src="data:<%= resource.vehicleMenu[0].productImageContentType %>;base64,<%= resource.vehicleMenu[0].productImageData.toString('base64') %>">
             </a>
 
             <p>
@@ -146,7 +146,7 @@
         </div>
         <div>
             <a href="furnitures">
-                <img src="data:<%= resource.homeImg.furnituresMenu.contentType %>;base64,<%= resource.homeImg.furnituresMenu.data.toString('base64') %>">
+                <img src="data:<%= resource.furnitureMenu[0].productImageContentType %>;base64,<%= resource.furnitureMenu[0].productImageData.toString('base64') %>">
             </a>
 
             <p>
@@ -155,7 +155,7 @@
         </div>
         <div>
             <a href="homeAppliances">
-                <img src="data:<%= resource.homeImg.haMenu.contentType %>;base64,<%= resource.homeImg.haMenu.data.toString('base64') %>">
+                <img src="data:<%= resource.haMenu[0].productImageContentType %>;base64,<%= resource.haMenu[0].productImageData.toString('base64') %>">
             </a>
 
             <p>
@@ -164,7 +164,7 @@
         </div>
         <div>
             <a href="electronics">
-                <img src="data:<%= resource.homeImg.electronicsMenu.contentType %>;base64,<%= resource.homeImg.electronicsMenu.data.toString('base64') %>">
+                <img src="data:<%= resource.electronicsMenu[0].productImageContentType %>;base64,<%= resource.electronicsMenu[0].productImageData.toString('base64') %>">
             </a>
 
             <p>
@@ -173,7 +173,7 @@
         </div>
         <div>
             <a href="otherProducts">
-                <img src="data:<%= resource.homeImg.opMenu.contentType %>;base64,<%= resource.homeImg.opMenu.data.toString('base64') %>">
+                <img src="data:<%= resource.opMenu[0].productImageContentType %>;base64,<%= resource.opMenu[0].productImageData.toString('base64') %>">
             </a>
 
             <p>
@@ -191,16 +191,14 @@
             World class Furnitures
         </h1>
         <div class="furImages">
-            <div>
-                <img src="data:<%= resource.homeImg.furnituresMenu.contentType %>;base64,<%= resource.homeImg.furnituresMenu.data.toString('base64') %>">
-                
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.furnituresMenu.contentType %>;base64,<%= resource.homeImg.furnituresMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.furnituresMenu.contentType %>;base64,<%= resource.homeImg.furnituresMenu.data.toString('base64') %>">
-            </div>
+            <% resource.furnitureMenu.forEach(product => { %>
+                <div>
+                    <a href="buyProduct?id=<%= product.productID %>">
+                    <img src="data:<%= product.productImageContentType %>;base64,<%= product.productImageData.toString('base64') %>">
+                    </a>
+                </div>
+            <% }) %>
+          
         </div>
     </div>
     
@@ -213,15 +211,14 @@
             Old is Gold
         </h1>
         <div class="antiquesImages">
-            <div>
-                <img src="data:<%= resource.homeImg.antiquesMenu.contentType %>;base64,<%= resource.homeImg.antiquesMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.antiquesMenu.contentType %>;base64,<%= resource.homeImg.antiquesMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.antiquesMenu.contentType %>;base64,<%= resource.homeImg.antiquesMenu.data.toString('base64') %>">
-            </div>
+            <% resource.antiquesMenu.forEach(product => { %>
+                <div>
+                    <a href="buyProduct?id=<%= product.productID %>">
+                    <img src="data:<%= product.productImageContentType %>;base64,<%= product.productImageData.toString('base64') %>">
+                    </a>
+                </div>
+            <% }) %>
+           
         </div>
     </div>
     
@@ -234,15 +231,14 @@
             Must have Home Appliances
         </h1>
         <div class="haImages">
-            <div>
-                <img src="data:<%= resource.homeImg.haMenu.contentType %>;base64,<%= resource.homeImg.haMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.haMenu.contentType %>;base64,<%= resource.homeImg.haMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.haMenu.contentType %>;base64,<%= resource.homeImg.haMenu.data.toString('base64') %>">
-            </div>
+            <% resource.haMenu.forEach(product => { %>
+                <div>
+                    <a href="buyProduct?id=<%= product.productID %>">
+                    <img src="data:<%= product.productImageContentType %>;base64,<%= product.productImageData.toString('base64') %>">
+                    </a>
+                </div>
+            <% }) %>
+            
         </div>
     </div>
     
@@ -252,18 +248,17 @@
     
     <div class="bike">
         <h1>
-            Ready to use Bikes
+            Ready to use Vehicles
         </h1>
         <div class="bikeImages">
-            <div>
-                <img src="data:<%= resource.homeImg.bikesMenu.contentType %>;base64,<%= resource.homeImg.bikesMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.bikesMenu.contentType %>;base64,<%= resource.homeImg.bikesMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.bikesMenu.contentType %>;base64,<%= resource.homeImg.bikesMenu.data.toString('base64') %>">
-            </div>
+            <% resource.vehicleMenu.forEach(product => { %>
+                <div>
+                    <a href="buyProduct?id=<%= product.productID %>">
+                    <img src="data:<%= product.productImageContentType %>;base64,<%= product.productImageData.toString('base64') %>">
+                    </a>
+                </div>
+            <% }) %>
+       
         </div>
     </div>
     
@@ -276,15 +271,14 @@
             Electronics from verified sellers
         </h1>
         <div class="elecImages">
-            <div>
-                <img src="data:<%= resource.homeImg.electronicsMenu.contentType %>;base64,<%= resource.homeImg.electronicsMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.electronicsMenu.contentType %>;base64,<%= resource.homeImg.electronicsMenu.data.toString('base64') %>">
-            </div>
-            <div>
-                <img src="data:<%= resource.homeImg.electronicsMenu.contentType %>;base64,<%= resource.homeImg.electronicsMenu.data.toString('base64') %>">
-            </div>
+            <% resource.electronicsMenu.forEach(product => { %>
+                <div>
+                    <a href="buyProduct?id=<%= product.productID %>">
+                    <img src="data:<%= product.productImaageContentType %>;base64,<%= product.productImageData.toString('base64') %>">
+                    </a>
+                </div>
+            <% }) %>
+       
         </div>
     </div>
     
