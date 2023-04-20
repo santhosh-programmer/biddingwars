@@ -210,6 +210,10 @@ button {
     color: yellow;
 }
 
+#statusUpdate {
+    color: white
+}
+
 .productImg {
     border-radius: 15px;
     grid-area: img;

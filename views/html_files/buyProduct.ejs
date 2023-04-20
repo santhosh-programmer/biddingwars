@@ -76,6 +76,7 @@
                     element.innerHTML = '\&\#8377;' + currentPrice;
                 }
                 if(status == 'live') { 
+                    document.getElementById('statusUpdate').innerText = 'live'
                     if(`<%=resource.isLogin%>`== 0 ) {
                         document.getElementById('waitingBid').style.display = 'none'
                         document.getElementById('noBid').style.display = 'block'
@@ -91,10 +92,12 @@
                     setTimeout(load,1000)
                 }
                 else if(status =='waiting') {
+                    document.getElementById('statusUpdate').innerText = 'waiting'
                     document.getElementById('waitingBid').style.display = 'block'
                     setTimeout(load,1000)
                 }
                 else {
+                    document.getElementById('statusUpdate').innerText = 'ended'
                     document.getElementById('liveBid').style.display = 'none'
                     document.getElementById('ownBid').style.display = 'none'
                     document.getElementById('endBid').style.display = 'block'
@@ -285,14 +288,8 @@
                 <p> <span> End Date: </span> <%= new Date(resource.product.endDate).toLocaleString() %></p>
             </div>
             <div class="detailDesign">
-                <p><span>Status: </span>
-                
-                    <% if (resource.product.status == 'waiting') { %>
-                        Not Started
-                        <% } else { %>
-                         <%= resource.product.status %>
-                    <% } %>
-                
+                <p><span >Status: </span>
+                    <span id="statusUpdate"></span>
                 </p>
             </div>
             <div class="detailDesign">
