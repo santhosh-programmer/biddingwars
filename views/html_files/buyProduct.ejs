@@ -92,13 +92,13 @@
                 }
                 else if(status =='waiting') {
                     document.getElementById('waitingBid').style.display = 'block'
+                    setTimeout(load,1000)
                 }
                 else {
                     document.getElementById('liveBid').style.display = 'none'
                     document.getElementById('ownBid').style.display = 'none'
                     document.getElementById('endBid').style.display = 'block'
                 }
-
             }
             xhttp.open("GET", window.location.origin + '/api/getCurrentPrice/?id=' + `<%= resource.product.productID %>`);
             xhttp.send();

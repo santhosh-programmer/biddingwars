@@ -4,6 +4,82 @@ const path = require('path')
 const { client } = require(path.resolve('routes','connection'))
 let userDetails = client.db('BiddingWars').collection('userDetails')
 let webImages = client.db('BiddingWars').collection('webImages')
+const nodemailer = require('nodemailer')
+
+async function mail(id, userName) {
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "auction.biddingwars@gmail.com",
+        pass: "jiokptcnaiblxhrg",
+      },
+    });
+    let info = await transporter.sendMail({
+      from: 'Bidding Wars <auction.biddingwars@gmail.com>',
+      to: id,
+      subject: "Registeration",
+      html: `
+      <html>
+      <head>
+      <style>
+            body {
+                width : 100%
+            }
+          .main {
+              width: 90%;
+              margin : 0 auto;
+              background-color: rgb(0, 0, 0);
+              border-radius: 20px;
+          }
+          img {
+              width: 50%;
+              border-radius: 20px;
+              margin: 1.5rem 25% 1rem 25%;
+          }
+          p {
+              color: white;
+              font-size: 1.3rem;
+              text-align: center;
+              margin: 1rem 1rem 3rem 1rem;
+          }
+          button {
+              background-color: blue;
+              color: white;
+              padding: 1rem;
+              font-size: 1.1rem;
+              text-align: center;
+              width: 80%;
+              margin: 0 10%;
+              margin-bottom: 1.5rem;
+              border-radius: 17px;
+              border: none;
+          }
+      </style>
+      </head>
+  
+      <body>  
+          <div class="main">
+          <img src="https://imgtr.ee/images/2023/04/20/05BS2.png" alt="logo"/>
+          
+          <p>
+          Welcome `+userName+`,
+            </p>
+            <p>
+                Your registeration was successful !!
+            </p>
+            <a href="biddingwars.onrender.com">
+                <button>
+                    BUY / SELL
+                </button>
+            </a>
+          </div>
+      </body>
+      </html>
+      `,
+    });
+  }
 
 async function findUser(_userName) {
     try {
@@ -36,6 +112,7 @@ async function insertUser(_userName,_firstName,_lastName,_userPassword,_userEmai
             })
 
             if(insertStatus) {
+                await mail(_userEmail,_userName)
                 return 'ok'
             }
             else {

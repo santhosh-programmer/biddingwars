@@ -10,6 +10,7 @@ const upload = multer(
     { storage : storage}
 )
 
+
 router.post('/sellProduct',upload.single('productImage'), async (req, res) => {
     const product = {
         sellerUserName: req.cookies.userName,
