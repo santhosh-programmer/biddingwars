@@ -27,7 +27,8 @@ router.post('/sellProduct',upload.single('productImage'), async (req, res) => {
         productImageData: req.file.buffer,
         productImageContentType: req.file.mimetype,
         maxBidUserName : null,
-        status: 'waiting'
+        status: 'waiting',
+        mailSent: 0
     }
     await productDetails.insertOne(product)
     let logo = await webImages.findOne({name: 'logo.png'})
