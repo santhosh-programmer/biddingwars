@@ -103,7 +103,7 @@ async function findUser(_userName) {
 async function findEmail(_userEmail) {
     try {
         let getStatus = await userDetails.findOne({
-            userName : _userEmail
+            userEmail : _userEmail
         })
         if(getStatus) {
             return 0;
