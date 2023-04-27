@@ -11,16 +11,15 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.resolve('views')))
 app.set('view engine','ejs')
 
-// const port = parseInt(process.env.PORT)
-const port = process.env.PORT || 3000
-connectDB()
 
-// app.listen(port, async () => {
-//     await connectDB().then(() =>
-//     console.log(`listening on port localhost: ${port}`
-//     ))
-// }
-// )
+const port = process.env.PORT || 80
+
+app.listen(port, async () => {
+    await connectDB().then(() =>
+    console.log(`listening on port localhost: ${port}`
+    ))
+}
+)
 
 // -------------------------HOME-------------------------
 

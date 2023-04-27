@@ -18,7 +18,26 @@
 
 
 
-    </script>
+   
+
+<dialog id="abcd" class="dialog">
+    <p>
+        CSS for mobile devices in progress...
+    </p>
+    <p>
+        Kindly visit the page in desktop.
+    </p>
+</dialog>
+
+<script>
+        if(screen.width <= 768){
+            console.log('Mobile device detected');
+            document.getElementById('abcd').showModal()
+        } else {
+            console.log('Desktop device detected');
+        }
+</script>
+
 
     <header>
 
