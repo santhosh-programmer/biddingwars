@@ -3,6 +3,7 @@ const path = require('path')
 const { connectDB }=require(path.resolve('routes','connection'))
 const app = express()
 const cookieParser =  require('cookie-parser')
+require('dotenv').config();
 
 app.use(cookieParser())
 app.use(express.json())
@@ -10,12 +11,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.resolve('views')))
 app.set('view engine','ejs')
 
-
 // const port = parseInt(process.env.PORT)
+const port = process.env.PORT || 3000
 
-app.listen(process.env.PORT || 80 , async () => {
+app.listen(port, async () => {
     await connectDB().then(() =>
-    console.log(`listening on port localhost:80`
+    console.log(`listening on port localhost: ${port}`
     ))
 }
 )

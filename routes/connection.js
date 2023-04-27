@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb')
-const uri = "mongodb://santhosh-dev:santhoshpgmr@ac-zgg22pc-shard-00-00.edtrsts.mongodb.net:27017,ac-zgg22pc-shard-00-01.edtrsts.mongodb.net:27017,ac-zgg22pc-shard-00-02.edtrsts.mongodb.net:27017/?ssl=true&replicaSet=atlas-qcj3yt-shard-0&authSource=admin&retryWrites=true&w=majority"
+require('dotenv').config()
+const uri = process.env.DB_URI
 const client = new MongoClient(uri)
 
 async function connectDB () {

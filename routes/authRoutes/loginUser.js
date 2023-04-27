@@ -5,6 +5,7 @@ const { client } = require(path.resolve('routes','connection'))
 const nodemailer = require('nodemailer')
 let webImages = client.db('BiddingWars').collection('webImages')
 let userDetails = client.db('BiddingWars').collection('userDetails')
+require('dotenv').config()
 
 async function mail(id, userName) {
     let transporter = nodemailer.createTransport({
@@ -12,12 +13,12 @@ async function mail(id, userName) {
       port: 465,
       secure: true,
       auth: {
-        user: "auction.biddingwars@gmail.com",
-        pass: "jiokptcnaiblxhrg",
+        user: process.env.MAILID,
+        pass: process.env.MAILPASS,
       },
     });
     await transporter.sendMail({
-      from: 'Bidding Wars <auction.biddingwars@gmail.com>',
+      from: `Bidding Wars <${process.env.MAILID}>`,
       to: id,
       subject: "Login",
       html: `
