@@ -100,34 +100,58 @@ async function findUser(_userName) {
     }
 }
 
-async function insertUser(_userName,_firstName,_lastName,_userPassword,_userEmail) {
-    if( await findUser(_userName)) {
-        try {
-            let insertStatus = await userDetails.insertOne({
-                userName: _userName,
-                firstName: _firstName,
-                lastName: _lastName,
-                userPassword: _userPassword,
-                userEmail : _userEmail,
-                wallet : 0
-            })
+async function findEmail(_userEmail) {
+    try {
+        let getStatus = await userDetails.findOne({
+            userName : _userEmail
+        })
+        if(getStatus) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+    catch (err) {
+        console.error(err)
+        return 0;
+    }
+}
 
-            if(insertStatus) {
-                await mail(_userEmail,_userName)
-                return 'ok'
+async function insertUser(_userName,_firstName,_lastName,_userPassword,_userEmail) {
+    if(await findEmail(_userEmail)) {
+        if( await findUser(_userName)) {
+            try {
+                let insertStatus = await userDetails.insertOne({
+                    userName: _userName,
+                    firstName: _firstName,
+                    lastName: _lastName,
+                    userPassword: _userPassword,
+                    userEmail : _userEmail,
+                    wallet : 0
+                })
+
+                if(insertStatus) {
+                    await mail(_userEmail,_userName)
+                    return 'ok'
+                }
+                else {
+                    return 'Failed to register'
+                }
             }
-            else {
-                return 'Failed to register'
+            catch (err) {
+                console.error(err)
+                return 'unknown error...see terminal'
             }
         }
-        catch (err) {
-            console.error(err)
-            return 'unknown error...see terminal'
+        else {
+            return 'User name already exists'
         }
     }
     else {
-        return 'User name already exists'
+        return 'Email already exists'
     }
+
 }
 
 
