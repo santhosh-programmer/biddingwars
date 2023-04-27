@@ -13,7 +13,7 @@ app.set('view engine','ejs')
 
 // const port = parseInt(process.env.PORT)
 const port = process.env.PORT || 3000
-await connectDB()
+connectDB()
 
 // app.listen(port, async () => {
 //     await connectDB().then(() =>
