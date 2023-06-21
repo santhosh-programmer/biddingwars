@@ -105,3 +105,4 @@ app.get('/api/results', require(path.resolve('api','results.js')) )
 
 app.get('/api/getWallet', require(path.resolve('api','getWallet.js')) )
  
+module.exports = app
