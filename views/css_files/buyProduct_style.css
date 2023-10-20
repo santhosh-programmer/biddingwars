@@ -14,7 +14,8 @@
     --nav-txt-color: rgb(0, 255, 85);
     --logo-color: red;
     --a-color: rgb(255, 81, 0);
-    --color : rgb(102,255,0);
+    /* --color : rgb(102,255,0); */
+    --color: grey;
     --d-color: rgb(0, 191, 255);
 }
 

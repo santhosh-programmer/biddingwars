@@ -12,7 +12,7 @@ app.use(express.static(path.resolve('views')))
 app.set('view engine','ejs')
 
 
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8080
 
 app.listen(port, async () => {
     await connectDB().then(() =>
