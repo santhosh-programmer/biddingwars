@@ -62,7 +62,7 @@ async function mail(id, userName) {
   
       <body>  
           <div class="main">
-          <img src="https://imgtr.ee/images/2023/04/20/05BS2.png" alt="logo"/>
+          <img src="https://imgtr.ee/images/2023/10/26/069fc8f968e4bb9c4d2c30143d0275d9.png" alt="logo"/>
           
             <p>
                 Welcome back `+userName+`,
